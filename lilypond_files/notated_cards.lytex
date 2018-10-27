@@ -1,0 +1,264 @@
+\documentclass[a4paper]{article}
+
+\begin{document}
+
+C major scale
+
+\begin{lilypond}
+\relative {
+  c'4-1 d-2 e-3 f-4 g-5 a-6 b-7 c-8
+}
+\end{lilypond}
+
+Unison
+
+\begin{lilypond}
+\relative {
+  c'4-1 c-1
+}
+\end{lilypond}
+
+Major 2nd interval
+
+\begin{lilypond}
+\relative {
+  c'4-1 d-2
+}
+\end{lilypond}
+
+Major 3rd interval
+
+\begin{lilypond}
+\relative {
+  c'4-1 e-3
+}
+\end{lilypond}
+
+Perfect 4th interval
+
+\begin{lilypond}
+\relative {
+  c'4-1 f-4
+}
+\end{lilypond}
+
+Perfect 5th interval
+
+\begin{lilypond}
+\relative {
+  c'4-1 g'4-5
+}
+\end{lilypond}
+
+Major 6th interval
+
+\begin{lilypond}
+\relative {
+  c'4-1 a'4-6
+}
+\end{lilypond}
+
+Major 7th interval
+
+\begin{lilypond}
+\relative {
+  c'4-1 b'4-7
+}
+\end{lilypond}
+
+Octave
+
+\begin{lilypond}
+\relative {
+  c'4-1 c'-8
+}
+\end{lilypond}
+
+Diminished Perfect 5th interval
+
+\begin{lilypond}
+\relative {
+  c'4-1 ges'-5
+}
+\end{lilypond}
+
+Augmented Perfect 5th interval
+
+\begin{lilypond}
+\relative {
+  c'4-1 gis'-5
+}
+\end{lilypond}
+
+Minor 3rd interval
+
+\begin{lilypond}
+\relative {
+  c'4-1 ees-3
+}
+\end{lilypond}
+
+Unison
+
+\begin{lilypond}
+\relative {
+  c''-1 c-1
+}
+\end{lilypond}
+
+Major 2nd interval
+
+\begin{lilypond}
+\relative {
+  c''-1 d,4-2
+}
+\end{lilypond}
+
+Major 3rd interval
+
+\begin{lilypond}
+\relative {
+  c''-1 e,-3
+}
+\end{lilypond}
+
+Perfect 4th interval
+
+\begin{lilypond}
+\relative {
+  c''-1 f,-4
+}
+\end{lilypond}
+
+Perfect 5th interval
+
+\begin{lilypond}
+\relative {
+  c''-1 g-5
+}
+\end{lilypond}
+
+Major 6th interval
+
+\begin{lilypond}
+\relative {
+  c''-1 a-6
+}
+\end{lilypond}
+
+Major 7th interval
+
+\begin{lilypond}
+\relative {
+  c''-1 b-7
+}
+\end{lilypond}
+
+Octave
+
+\begin{lilypond}
+\relative {
+  c''-1 c,-8
+}
+\end{lilypond}
+
+D major scale (ascending)
+
+\begin{lilypond}
+\relative d' {
+	\key d \major
+	d-1 e-2 fis-3 g-4 a-5 b-6 cis-7 d-8
+}
+\end{lilypond}
+
+D major scale (descending)
+
+\begin{lilypond}
+\relative d' {
+	\key d \major
+	d'-8 cis-7 b-6 a-5 g-4 fis-3 e-2 d-1
+}
+\end{lilypond}
+
+G major scale (ascending)
+
+\begin{lilypond}
+\relative g' {
+	\key g \major
+	g-1 a-2 b-3 c-4 d-5 e-6 fis-7 g-8
+}
+\end{lilypond}
+
+G major scale (descending)
+
+\begin{lilypond}
+\relative g' {
+	\key g \major
+	g'-8 fis-7 e-6 d-5 c-4 b-3 a-2 g-1
+}
+\end{lilypond}
+
+G major chord
+
+\begin{lilypond}
+\relative g' {
+	\key g \major
+	<g b d>
+}
+\end{lilypond}
+
+D major chord
+
+\begin{lilypond}
+\relative d' {
+	\key d \major
+	<d fis a>
+}
+\end{lilypond}
+
+E major chord
+
+\begin{lilypond}
+\relative e' {
+	\key e \major
+	<e gis b>
+}
+\end{lilypond}
+
+F major chord
+
+\begin{lilypond}
+\relative f' {
+	\key f \major
+	<f a c>
+}
+\end{lilypond}
+
+G major chord
+
+\begin{lilypond}
+\relative g' {
+	\key g \major
+	<g b d>
+}
+\end{lilypond}
+
+A major chord
+
+\begin{lilypond}
+\relative a' {
+	\key a \major
+	<a cis e>
+}
+\end{lilypond}
+
+B major chord
+
+\begin{lilypond}
+\relative b' {
+	\key b \major
+	<b dis fis>
+}
+\end{lilypond}
+
+\end{document}
