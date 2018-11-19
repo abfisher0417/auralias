@@ -1,0 +1,339 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "aural skills",
+            "intents": [
+                {
+                    "name": "AMAZON.FallbackIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.YesIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.NoIntent",
+                    "samples": []
+                },
+                {
+                    "name": "ModuleIntent",
+                    "slots": [
+                        {
+                            "name": "subject",
+                            "type": "subject"
+                        }
+                    ],
+                    "samples": [
+                        "{subject}",
+                        "go to {subject}",
+                        "explore {subject}",
+                        "learn {subject}",
+                        "practice {subject}",
+                        "do {subject}",
+                        "i would like to do {subject}",
+                        "i'd like to do {subject}"
+                    ]
+                },
+                {
+                    "name": "IntervalQuizIntent",
+                    "slots": [
+                        {
+                            "name": "interval",
+                            "type": "interval"
+                        }
+                    ],
+                    "samples": [
+                        "how about {interval}",
+                        "{interval}",
+                        "could it be {interval}",
+                        "is it {interval}"
+                    ]
+                },
+                {
+                    "name": "ChordQuizIntent",
+                    "slots": [
+                        {
+                            "name": "chord",
+                            "type": "chord"
+                        }
+                    ],
+                    "samples": [
+                        "how about {chord}",
+                        "could it be {chord}",
+                        "is it {chord}",
+                        "{chord}"
+                    ]
+                },
+                {
+                    "name": "ScaleQuizIntent",
+                    "slots": [
+                        {
+                            "name": "note",
+                            "type": "scale_note"
+                        },
+                        {
+                            "name": "number",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "could it be {number}",
+                        "is it {number}",
+                        "how about {number}",
+                        "{number}",
+                        "{note}",
+                        "how about {note}",
+                        "could it be {note}",
+                        "is it {note}"
+                    ]
+                }
+            ],
+            "types": [
+                {
+                    "name": "subject",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "scales"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "chords"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "intervals"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "interval",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "diminished octave"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "augmented octave"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "octave"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "major 7th"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "minor 7th"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "major 6th"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "minor 6th"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "diminished perfect 5th",
+                                "synonyms": [
+                                    "diminished 5th"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "augmented perfect 5th",
+                                "synonyms": [
+                                    "augmented 5th"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "perfect 5th"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "diminished perfect 4th",
+                                "synonyms": [
+                                    "diminished 4th"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "augmented perfect 4th",
+                                "synonyms": [
+                                    "augmented 4th"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "perfect 4th"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "major 3rd"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "minor 3rd"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "major 2nd"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "minor 2nd"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "unison"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "chord",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "b major",
+                                "synonyms": [
+                                    "b"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "a major",
+                                "synonyms": [
+                                    "a"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "g major",
+                                "synonyms": [
+                                    "g"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "f major",
+                                "synonyms": [
+                                    "f"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "e major",
+                                "synonyms": [
+                                    "e"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "d major",
+                                "synonyms": [
+                                    "d"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "c major",
+                                "synonyms": [
+                                    "c"
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "scale_note",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "c sharp"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "b"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "a"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "g"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "f sharp"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "e"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "d"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 midiutil = "*"
+ask-sdk = "*"
+pyyaml = "*"
+jupyter = "*"
 
 [dev-packages]
 
