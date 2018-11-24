@@ -9,14 +9,14 @@ LESSONS = {
           "prompt": "Would you like to learn about the numerical value of an interval?"
         },
         {
-          "title": "Intervals",
+          "title": "Intervals - Numerical Value",
           "card_image": "",
           "voice": "The numerical value represents the number of tones included between two notes within a scale.",
           "prompt": "Would you like to hear about the quality of an interval?"
         },
         {
-          "title": "Intervals",
-          "card_image": "https://s3.amazonaws.com/auralias-alexa-skill/cards/interval_quality.png",
+          "title": "Intervals - Quality",
+          "card_image": "Perfect Intervals: unison, fourth, fifth, and octave; can be diminished (one chromatic tone smaller) or augmented (one chromatic tone larger).\nNon-Perfect Intervals: second, third, sixth and seventh; can be major or minor.",
           "voice": "The quality of an interval can be Perfect, Diminished, Augmented, Major, or Minor. Unison, fourth, fifth, and octave are called perfect intervals. Each of them can be diminished (one chromatic tone smaller) or augmented (one chromatic tone larger). The rest of the intervals within an octave are: second, third, sixth and seventh. Each of them can be major or minor.",
           "prompt": "Would you like to hear some example intervals?"
         },
@@ -53,7 +53,7 @@ LESSONS = {
       ],
       "assessment": {
         "title": "Intervals Assessment",
-        "instructions": "In this exercise, you will hear two notes in sequence, and if you are using a screen enabled device, you will see the notes. Your goal is to identify the interval between the two notes by name.",
+        "instructions": "In this exercise, you will hear two notes in sequence, and if you are using a screen enabled device, you will see the notes. Your goal is to identify the interval between the two notes by name. After I play an interval, say its name by responding unison, major second, major third, perfect fourth, perfect fifth, major sixth, major seventh, or octave.",
         "prompt": "Name the interval. For example, octave.",
           "levels": [
             {
@@ -126,7 +126,7 @@ LESSONS = {
       "lesson": [
         {
           "title": "Scales",
-          "card_image": "",
+          "card_image": "A scale is a group of notes in succession. The two most common scales are major and minor. Scales are constructed through a formula.",
           "voice": "A scale is a group of notes in succession <audio src=\"https://s3.amazonaws.com/auralias-alexa-skill/mp3s/scale_d_major_asc_stop_at_7.mp3\" /> The two most common scales are major and minor. Scales are constructed through a formula.",
           "prompt": "Would you like to learn how a major scale is constructed?"
         },
@@ -139,7 +139,7 @@ LESSONS = {
         {
           "title": "Scales - D Major",
           "card_image": "https://s3.amazonaws.com/auralias-alexa-skill/cards/scale_d_major_asc.png",
-          "voice": "First start with the root note, D, and follow the formula. A whole step from D is E. A whole step from E is F sharp. A half step from F sharp is G. A whole step from G is A. A whole step from A is B. A whole step from B is C sharp. A half step from C sharp is D, back to the top. The D major scale ends up sounding like this <audio src=\"https://s3.amazonaws.com/auralias-alexa-skill/mp3s/scale_d_major_asc_stop_at_7.mp3\" />",
+          "voice": "First start with the root note, D, and follow the formula. A whole step from D is E. A whole step from E is F sharp. A half step from F sharp is G. A whole step from G is A. A whole step from A is B. A whole step from B is C sharp. A half step from C sharp is D. The D major scale ends up sounding like this <audio src=\"https://s3.amazonaws.com/auralias-alexa-skill/mp3s/scale_d_major_asc_stop_at_7.mp3\" />",
           "prompt": "Would you like to assess your knowledge?"
         }
       ],
@@ -190,32 +190,32 @@ LESSONS = {
         {
           "title": "Chords",
           "card_image": "https://s3.amazonaws.com/auralias-alexa-skill/cards/chord_f_major_construction.png",
-          "voice": "With the F major scale <audio src=\"https://s3.amazonaws.com/auralias-alexa-skill/mp3s/scale_f_major_asc_stop_at_7.mp3\" /> take the first, third, and fifth notes of the scale out: F, A, and C <audio src=\"https://s3.amazonaws.com/auralias-alexa-skill/mp3s/F-major-chord-individual-notes.mp3\" /> The F major triad would be F, A, and C <audio src=\"https://s3.amazonaws.com/auralias-alexa-skill/mp3s/F_major_chord.mp3\" />",
+          "voice": "With the F major scale <audio src=\"https://s3.amazonaws.com/auralias-alexa-skill/mp3s/scale_f_major_asc_stop_at_7.mp3\" /> take the first, third, and fifth notes of the scale out: F, A, and C <audio src=\"https://s3.amazonaws.com/auralias-alexa-skill/mp3s/f-major-chord-individual-notes.mp3\" /> The F major triad would be F, A, and C <audio src=\"https://s3.amazonaws.com/auralias-alexa-skill/mp3s/f_major_chord.mp3\" />",
           "prompt": "Would you like to assess your knowledge?"
         }
       ],
       "assessment": {
         "title": "Chords Assessment",
-        "instructions": "In this exercise, a random major triad will be played, and if you are using a screen enabled device, you will see the triad. Your goal is to identify the triad by name.",
+        "instructions": "In this exercise, a random major triad will be played, and if you are using a screen enabled device, you will see the triad. Your goal is to identify the triad by name. For example, C major.",
         "prompt": "Name the triad. For example, C major.",
         "levels": [
           {
             "chords": [
-              "C_major",
-              "D_major",
-              "F_major",
-              "G_major"
+              "c_major",
+              "d_major",
+              "f_major",
+              "g_major"
             ]
           },
           {
             "chords": [
-              "C_major",
-              "D_major",
-              "E_major",
-              "F_major",
-              "G_major",
-              "A_major",
-              "B_major"
+              "c_major",
+              "d_major",
+              "e_major",
+              "f_major",
+              "g_major",
+              "a_major",
+              "b_major"
             ]
           }
         ]

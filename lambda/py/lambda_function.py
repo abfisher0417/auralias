@@ -13,13 +13,13 @@ from ask_sdk_model import Response, ui
 from lessons import LESSONS
 
 SKILL_NAME = 'Auralias'
+CARD_FOLDER = 'https://s3.amazonaws.com/auralias-alexa-skill/cards/'
+MP3_FOLDER = 'https://s3.amazonaws.com/auralias-alexa-skill/mp3s/'
+
 sb = StandardSkillBuilder(table_name="Auralias", auto_create_table=True)
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
-CARD_FOLDER = 'https://s3.amazonaws.com/auralias-alexa-skill/cards/'
-MP3_FOLDER = 'https://s3.amazonaws.com/auralias-alexa-skill/mp3s/'
 
 
 def calculate_assessment_questions(subject, level):
@@ -79,7 +79,7 @@ def calculate_assessment_questions(subject, level):
             choice = {}
             choice['note1'] = "%s_chord" % (chord)
             choice['card'] = "chord_%s" % (chord)
-            choice['answer'] = chord.replace("_", " ").lower()
+            choice['answer'] = chord.replace("_", " ")
             choices.append(choice)
 
     random.seed()
@@ -104,7 +104,7 @@ def get_assessment_standard_card(subject, question):
     image = "{}{}.png".format(CARD_FOLDER, question['card'])
     card = ui.StandardCard(
         title=subject,
-        text="",
+        text=" ",
         image=ui.Image(
             small_image_url=image,
             large_image_url=image
@@ -201,7 +201,7 @@ def yes_handler(handler_input):
         if LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['card_image'] == "":
             handler_input.response_builder.set_card(ui.SimpleCard(title=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['title'],content=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['voice']))
         else:
-            handler_input.response_builder.set_card(ui.StandardCard(title=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['title'],text="",image=ui.Image(small_image_url=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['card_image'],large_image_url=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['card_image'])))
+            handler_input.response_builder.set_card(ui.StandardCard(title=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['title'],text=" ",image=ui.Image(small_image_url=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['card_image'],large_image_url=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['card_image'])))
  
         logger.info("Upping lesson index")
         lesson_or_assessment_idx += 1

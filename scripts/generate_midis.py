@@ -49,7 +49,7 @@ for i, degree_change in enumerate(major_scale_formula):
 		my_midi.writeFile(output_file)
 
 # Create the following major chords: C, D, E, F, G, A, B
-major_chords = ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+major_chords = ['c', 'd', 'e', 'f', 'g', 'a', 'b']
 major_chords_start_range = [60, 62, 64, 65, 67, 69, 71]
 for i, chord in enumerate(major_chords):
 	my_midi = MIDIFile(1)
@@ -62,7 +62,7 @@ for i, chord in enumerate(major_chords):
 		my_midi.writeFile(output_file)
 
 # Create all individual notes of F major scale
-major_chords = ['F']
+major_chords = ['f']
 major_chords_start_range = [65]
 for i, chord in enumerate(major_chords):
 	my_midi = MIDIFile(1)
