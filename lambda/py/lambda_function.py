@@ -24,7 +24,8 @@ logger.setLevel(logging.INFO)
 
 def calculate_assessment_questions(subject, level):
     major_scale_formula = [0, 2, 2, 1, 2, 2, 2, 1]
-    major_interval_names = ['unison', 'major second', 'major 3rd', 'perfect 4th', 'perfect 5th', 'major 6th', 'major 7th', 'octave']
+    major_interval_names = ['unison', 'major second', 'major 3rd', 'perfect 4th', 'perfect 5th', 'major 6th',
+                            'major 7th', 'octave']
     major_interval_cards = [1, 2, 3, 4, 5, 6, 7, 8]
     start_note_midi_key_map = {
         'c_major_asc': 60,
@@ -108,8 +109,23 @@ def get_assessment_standard_card(subject, question):
         image=ui.Image(
             small_image_url=image,
             large_image_url=image
-            )
         )
+    )
+    return card
+
+
+def get_lesson_card(slide):
+    card = None
+    card_image = slide['card_image']
+    title = slide['title']
+    content = slide['voice']
+    if card_image == "":
+        card = ui.SimpleCard(title=title, content=content)
+    elif 'https' not in card_image:
+        card = ui.SimpleCard(title=title, content=card_image)
+    else:
+        card = ui.StandardCard(title=title, text=" ", image=ui.Image(
+            small_image_url=card_image, large_image_url=card_image))
     return card
 
 
@@ -122,19 +138,19 @@ def launch_request_handler(handler_input):
     # type: (HandlerInput) -> Response
     attr = handler_input.attributes_manager.persistent_attributes
     if not attr:
-        attr['last_visited_module'] = 'NA' # To track what module one is working on
-        attr['intervals_lesson_or_assessment_flag'] = 'lesson' # To track if one is on the lesson or assessment
-        attr['intervals_lesson_or_assessment_idx'] = 0 # To track the index into the lesson or level of assessment
-        attr['intervals_assessment_question_counter'] = -1 # To track the number of questions asked by assessment level
-        attr['intervals_assessment_correct_score_counter'] = -1 # To track the number of right questions by level
-        attr['scales_lesson_or_assessment_flag'] = 'lesson' # To track if one is on the lesson or assessment
-        attr['scales_lesson_or_assessment_idx'] = 0 # To track the index into the lesson or level of assessment
-        attr['scales_assessment_question_counter'] = -1 # To track the number of questions asked by assessment level
-        attr['scales_assessment_correct_score_counter'] = -1 # To track the number of right questions by level
-        attr['chords_lesson_or_assessment_flag'] = 'lesson' # To track if one is on the lesson or assessment
-        attr['chords_lesson_or_assessment_idx'] = 0 # To track the index into the lesson or level of assessment
-        attr['chords_assessment_question_counter'] = -1 # To track the number of questions asked by assessment level
-        attr['chords_assessment_correct_score_counter'] = -1 # To track the number of right questions by level
+        attr['last_visited_module'] = 'NA'  # To track what module one is working on
+        attr['intervals_lesson_or_assessment_flag'] = 'lesson'  # To track if one is on the lesson or assessment
+        attr['intervals_lesson_or_assessment_idx'] = -1  # To track the index into the lesson or level of assessment
+        attr['intervals_assessment_question_counter'] = -1  # To track the number of questions asked by assessment level
+        attr['intervals_assessment_correct_score_counter'] = -1  # To track the number of right questions by level
+        attr['scales_lesson_or_assessment_flag'] = 'lesson'  # To track if one is on the lesson or assessment
+        attr['scales_lesson_or_assessment_idx'] = -1  # To track the index into the lesson or level of assessment
+        attr['scales_assessment_question_counter'] = -1  # To track the number of questions asked by assessment level
+        attr['scales_assessment_correct_score_counter'] = -1  # To track the number of right questions by level
+        attr['chords_lesson_or_assessment_flag'] = 'lesson'  # To track if one is on the lesson or assessment
+        attr['chords_lesson_or_assessment_idx'] = -1  # To track the index into the lesson or level of assessment
+        attr['chords_assessment_question_counter'] = -1  # To track the number of questions asked by assessment level
+        attr['chords_assessment_correct_score_counter'] = -1  # To track the number of right questions by level
 
     handler_input.attributes_manager.session_attributes = attr
 
@@ -148,7 +164,7 @@ def launch_request_handler(handler_input):
 
 
 @sb.request_handler(can_handle_func=lambda input:
-                    is_intent_name("ModuleIntent")(input))
+is_intent_name("ModuleIntent")(input))
 def module_handler(handler_input):
     """Handler for processing integrated tutorial component."""
     # type: (HandlerInput) -> Response
@@ -173,7 +189,7 @@ def module_handler(handler_input):
 
 
 @sb.request_handler(can_handle_func=lambda input:
-                    is_intent_name("AMAZON.YesIntent")(input))
+is_intent_name("AMAZON.YesIntent")(input))
 def yes_handler(handler_input):
     """Handler for Yes Intent, only if the player said yes.
     """
@@ -186,54 +202,63 @@ def yes_handler(handler_input):
     assessment_correct_score_counter = session_attr['%s_assessment_correct_score_counter' % subject]
 
     logger.info("Subject: {}\n" \
-        "Flag: {}\n" \
-        "Index: {}\n" \
-        "Question Counter: {}\n" \
-        "Correct Questions: {}" \
-        .format(subject, lesson_or_assessment_flag, lesson_or_assessment_idx, assessment_question_counter, assessment_correct_score_counter))
+                "Flag: {}\n" \
+                "Index: {}\n" \
+                "Question Counter: {}\n" \
+                "Correct Questions: {}" \
+                .format(subject, lesson_or_assessment_flag, lesson_or_assessment_idx, assessment_question_counter,
+                        assessment_correct_score_counter))
 
-    if (lesson_or_assessment_flag == 'lesson' and lesson_or_assessment_idx < len(LESSONS['modules'][subject][lesson_or_assessment_flag])):
-        speech_text = LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['voice'] \
-                        + " " \
-                        + LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['prompt']
-        reprompt = LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['prompt']
-
-        if LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['card_image'] == "":
-            handler_input.response_builder.set_card(ui.SimpleCard(title=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['title'],content=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['voice']))
-        else:
-            handler_input.response_builder.set_card(ui.StandardCard(title=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['title'],text=" ",image=ui.Image(small_image_url=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['card_image'],large_image_url=LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['card_image'])))
- 
-        logger.info("Upping lesson index")
+    if (lesson_or_assessment_flag == 'lesson' and lesson_or_assessment_idx < len(
+            LESSONS['modules'][subject][lesson_or_assessment_flag]) - 1):
+        logger.info("Increasing lesson index")
         lesson_or_assessment_idx += 1
     elif (lesson_or_assessment_flag == 'lesson'
-     and lesson_or_assessment_idx == len(LESSONS['modules'][subject][lesson_or_assessment_flag])):
+          and lesson_or_assessment_idx == len(LESSONS['modules'][subject][lesson_or_assessment_flag]) - 1):
         logger.info("Moving onto the assessment")
         lesson_or_assessment_flag = 'assessment'
         lesson_or_assessment_idx = 0
         assessment_question_counter = 0
         assessment_correct_score_counter = 0
     elif (lesson_or_assessment_flag == 'assessment'
-        and lesson_or_assessment_idx < len(LESSONS['modules'][subject][lesson_or_assessment_flag]['levels'])):
+          and lesson_or_assessment_idx < len(LESSONS['modules'][subject][lesson_or_assessment_flag]['levels'])):
         logger.info("Resuming the assessment")
         # If the user previously got through 8 questions with more than 80% correct, advance to next level
-        if (assessment_question_counter == 8 
-            and float(assessment_correct_score_counter) / assessment_question_counter > 0.8):
-            logger.info("Upping assessment index. Score was {} of {}.".format(assessment_correct_score_counter, assessment_question_counter))
+        if (assessment_question_counter == 8
+                and float(assessment_correct_score_counter) / assessment_question_counter > 0.8):
+            logger.info("Increasing assessment index. Score was {} of {}.".format(assessment_correct_score_counter,
+                                                                              assessment_question_counter))
             lesson_or_assessment_idx += 1
         # Otherwise, keep on current level from beginning
         assessment_question_counter = 0
         assessment_correct_score_counter = 0
+    else:
+        logger.info("Resetting module since it is finished")
+        lesson_or_assessment_flag = 'lesson'
+        lesson_or_assessment_idx = 0
+        assessment_question_counter = 0
+        assessment_correct_score_counter = 0
 
-    if lesson_or_assessment_flag == 'assessment':
+    if lesson_or_assessment_flag == 'lesson':
+        speech_text = LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['voice'] \
+                      + " " \
+                      + LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['prompt']
+        reprompt = LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]['prompt']
+        handler_input.response_builder.set_card(get_lesson_card(LESSONS['modules'][subject][lesson_or_assessment_flag][lesson_or_assessment_idx]))
+    elif lesson_or_assessment_flag == 'assessment':
         # Calculate 8-question quiz for the current assessment level and persist in session
-        session_attr['quiz'] = calculate_assessment_questions(subject, LESSONS['modules'][subject][lesson_or_assessment_flag]['levels'][lesson_or_assessment_idx])
+        session_attr['quiz'] = calculate_assessment_questions(subject,
+                                                              LESSONS['modules'][subject][lesson_or_assessment_flag][
+                                                                  'levels'][lesson_or_assessment_idx])
         # Explain assessment instructions
         # Ask first question. Response will be handled by assessment intents.
         speech_text = LESSONS['modules'][subject][lesson_or_assessment_flag]['instructions'] \
-                        + " " \
-                        + get_assessment_audio_tags(session_attr['quiz'][assessment_question_counter])
+                      + " " \
+                      + get_assessment_audio_tags(session_attr['quiz'][assessment_question_counter])
         reprompt = LESSONS['modules'][subject][lesson_or_assessment_flag]['prompt']
-        handler_input.response_builder.set_card(get_assessment_standard_card(LESSONS['modules'][subject][lesson_or_assessment_flag]['title'], session_attr['quiz'][assessment_question_counter]))
+        handler_input.response_builder.set_card(
+            get_assessment_standard_card(LESSONS['modules'][subject][lesson_or_assessment_flag]['title'],
+                                         session_attr['quiz'][assessment_question_counter]))
 
     session_attr['%s_lesson_or_assessment_idx' % subject] = lesson_or_assessment_idx
     session_attr['%s_lesson_or_assessment_flag' % subject] = lesson_or_assessment_flag
@@ -245,7 +270,7 @@ def yes_handler(handler_input):
 
 
 @sb.request_handler(can_handle_func=lambda input:
-                    is_intent_name("AMAZON.NoIntent")(input))
+is_intent_name("AMAZON.NoIntent")(input))
 def no_handler(handler_input):
     """Handler for No Intent, only if the player said no.
     """
@@ -259,6 +284,7 @@ def no_handler(handler_input):
 
     handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
+
 
 def currently_assessing(handler_input):
     """Function that acts as can handle for the assessment."""
@@ -275,8 +301,8 @@ def currently_assessing(handler_input):
 
 
 @sb.request_handler(can_handle_func=lambda input:
-                    (currently_assessing(input) == 'intervals') and
-                    is_intent_name("IntervalQuizIntent")(input))
+(currently_assessing(input) == 'intervals') and
+is_intent_name("IntervalQuizIntent")(input))
 def interval_quiz_handler(handler_input):
     """Handler for IntervalQuiz Intent, if the player names an interval
     """
@@ -292,13 +318,14 @@ def interval_quiz_handler(handler_input):
     user_answer = str(handler_input.request_envelope.request.intent.slots["interval"].value)
 
     logger.info("Subject: {}\n" \
-        "Flag: {}\n" \
-        "Index: {}\n" \
-        "Question Counter: {}\n" \
-        "Correct Questions: {}" \
-        "Answer: {}" \
-        "User Answer: {}" \
-        .format(subject, lesson_or_assessment_flag, lesson_or_assessment_idx, assessment_question_counter, assessment_correct_score_counter, answer, user_answer))
+                "Flag: {}\n" \
+                "Index: {}\n" \
+                "Question Counter: {}\n" \
+                "Correct Questions: {}" \
+                "Answer: {}" \
+                "User Answer: {}" \
+                .format(subject, lesson_or_assessment_flag, lesson_or_assessment_idx, assessment_question_counter,
+                        assessment_correct_score_counter, answer, user_answer))
 
     assessment_question_counter += 1
     if answer == user_answer:
@@ -314,14 +341,17 @@ def interval_quiz_handler(handler_input):
 
     if assessment_question_counter < 8:
         speech_text += " " \
-                        + "Let's try another one. " \
-                        + get_assessment_audio_tags(session_attr['quiz'][assessment_question_counter])
+                       + "Let's try another one. " \
+                       + get_assessment_audio_tags(session_attr['quiz'][assessment_question_counter])
         reprompt = LESSONS['modules'][subject][lesson_or_assessment_flag]['prompt']
-        handler_input.response_builder.set_card(get_assessment_standard_card(LESSONS['modules'][subject][lesson_or_assessment_flag]['title'], session_attr['quiz'][assessment_question_counter]))
+        handler_input.response_builder.set_card(
+            get_assessment_standard_card(LESSONS['modules'][subject][lesson_or_assessment_flag]['title'],
+                                         session_attr['quiz'][assessment_question_counter]))
         handler_input.response_builder.speak(speech_text).ask(reprompt)
     else:
         speech_text += " " \
-                        + "Let's take a break for now. Good bye."
+                       + "You answered {} of {} questions correctly. ".format(assessment_correct_score_counter, assessment_question_counter) \
+                       + "Let's take a break for now. Good bye."
         handler_input.attributes_manager.persistent_attributes = session_attr
         handler_input.attributes_manager.save_persistent_attributes()
         handler_input.response_builder.speak(
@@ -331,8 +361,8 @@ def interval_quiz_handler(handler_input):
 
 
 @sb.request_handler(can_handle_func=lambda input:
-                    (currently_assessing(input) == 'scales') and
-                    is_intent_name("ScaleQuizIntent")(input))
+(currently_assessing(input) == 'scales') and
+is_intent_name("ScaleQuizIntent")(input))
 def scale_quiz_handler(handler_input):
     """Handler for ScaleQuiz Intent, if the player names a note or number
     """
@@ -352,13 +382,14 @@ def scale_quiz_handler(handler_input):
         user_answer = int(handler_input.request_envelope.request.intent.slots["number"].value)
 
     logger.info("Subject: {}\n" \
-        "Flag: {}\n" \
-        "Index: {}\n" \
-        "Question Counter: {}\n" \
-        "Correct Questions: {}" \
-        "Answer: {}" \
-        "User Answer: {}" \
-        .format(subject, lesson_or_assessment_flag, lesson_or_assessment_idx, assessment_question_counter, assessment_correct_score_counter, answer, user_answer))
+                "Flag: {}\n" \
+                "Index: {}\n" \
+                "Question Counter: {}\n" \
+                "Correct Questions: {}" \
+                "Answer: {}" \
+                "User Answer: {}" \
+                .format(subject, lesson_or_assessment_flag, lesson_or_assessment_idx, assessment_question_counter,
+                        assessment_correct_score_counter, answer, user_answer))
 
     assessment_question_counter += 1
     if answer == user_answer:
@@ -374,14 +405,17 @@ def scale_quiz_handler(handler_input):
 
     if assessment_question_counter < 8:
         speech_text += " " \
-                        + "Let's try another one. " \
-                        + get_assessment_audio_tags(session_attr['quiz'][assessment_question_counter])
+                       + "Let's try another one. " \
+                       + get_assessment_audio_tags(session_attr['quiz'][assessment_question_counter])
         reprompt = LESSONS['modules'][subject][lesson_or_assessment_flag]['prompt']
-        handler_input.response_builder.set_card(get_assessment_standard_card(LESSONS['modules'][subject][lesson_or_assessment_flag]['title'], session_attr['quiz'][assessment_question_counter]))
+        handler_input.response_builder.set_card(
+            get_assessment_standard_card(LESSONS['modules'][subject][lesson_or_assessment_flag]['title'],
+                                         session_attr['quiz'][assessment_question_counter]))
         handler_input.response_builder.speak(speech_text).ask(reprompt)
     else:
         speech_text += " " \
-                        + "Let's take a break for now. Good bye."
+                       + "You answered {} of {} questions correctly. ".format(assessment_correct_score_counter, assessment_question_counter) \
+                       + "Let's take a break for now. Good bye."
         handler_input.attributes_manager.persistent_attributes = session_attr
         handler_input.attributes_manager.save_persistent_attributes()
         handler_input.response_builder.speak(
@@ -391,8 +425,8 @@ def scale_quiz_handler(handler_input):
 
 
 @sb.request_handler(can_handle_func=lambda input:
-                    (currently_assessing(input) == 'chords') and
-                    is_intent_name("ChordQuizIntent")(input))
+(currently_assessing(input) == 'chords') and
+is_intent_name("ChordQuizIntent")(input))
 def chord_quiz_handler(handler_input):
     """Handler for ChordQuiz Intent, if the player names a chord
     """
@@ -408,13 +442,14 @@ def chord_quiz_handler(handler_input):
     user_answer = str(handler_input.request_envelope.request.intent.slots["chord"].value).lower()
 
     logger.info("Subject: {}\n" \
-        "Flag: {}\n" \
-        "Index: {}\n" \
-        "Question Counter: {}\n" \
-        "Correct Questions: {}" \
-        "Answer: {}" \
-        "User Answer: {}" \
-        .format(subject, lesson_or_assessment_flag, lesson_or_assessment_idx, assessment_question_counter, assessment_correct_score_counter, answer, user_answer))
+                "Flag: {}\n" \
+                "Index: {}\n" \
+                "Question Counter: {}\n" \
+                "Correct Questions: {}" \
+                "Answer: {}" \
+                "User Answer: {}" \
+                .format(subject, lesson_or_assessment_flag, lesson_or_assessment_idx, assessment_question_counter,
+                        assessment_correct_score_counter, answer, user_answer))
 
     assessment_question_counter += 1
     if answer == user_answer:
@@ -430,14 +465,17 @@ def chord_quiz_handler(handler_input):
 
     if assessment_question_counter < 8:
         speech_text += " " \
-                        + "Let's try another one. " \
-                        + get_assessment_audio_tags(session_attr['quiz'][assessment_question_counter])
+                       + "Let's try another one. " \
+                       + get_assessment_audio_tags(session_attr['quiz'][assessment_question_counter])
         reprompt = LESSONS['modules'][subject][lesson_or_assessment_flag]['prompt']
-        handler_input.response_builder.set_card(get_assessment_standard_card(LESSONS['modules'][subject][lesson_or_assessment_flag]['title'], session_attr['quiz'][assessment_question_counter]))
+        handler_input.response_builder.set_card(
+            get_assessment_standard_card(LESSONS['modules'][subject][lesson_or_assessment_flag]['title'],
+                                         session_attr['quiz'][assessment_question_counter]))
         handler_input.response_builder.speak(speech_text).ask(reprompt)
     else:
         speech_text += " " \
-                        + "Let's take a break for now. Good bye."
+                       + "You answered {} of {} questions correctly. ".format(assessment_correct_score_counter, assessment_question_counter) \
+                       + "Let's take a break for now. Good bye."
         handler_input.attributes_manager.persistent_attributes = session_attr
         handler_input.attributes_manager.save_persistent_attributes()
         handler_input.response_builder.speak(
@@ -450,8 +488,13 @@ def chord_quiz_handler(handler_input):
 def help_intent_handler(handler_input):
     """Handler for Help Intent."""
     # type: (HandlerInput) -> Response
-    speech_text = (
-        "Help content will go here")
+    speech_text = ("During the introductory section for each module, I will tell you a bit about intervals, scales, or chords. Say yes to move on or no to stop.")
+    if currently_assessing(handler_input) == 'intervals':
+        speech_text = ("Name the interval. For example, say unison, perfect fifth, or octave.")
+    elif currently_assessing(handler_input) == 'scales':
+        speech_text = ("Identify the note I stopped on.")
+    elif currently_assessing(handler_input) == 'chords':
+        speech_text = ("Identify the chord I played by name. For example, c major")
 
     handler_input.response_builder.speak(speech_text)
     return handler_input.response_builder.response
@@ -459,8 +502,8 @@ def help_intent_handler(handler_input):
 
 @sb.request_handler(
     can_handle_func=lambda input:
-        is_intent_name("AMAZON.CancelIntent")(input) or
-        is_intent_name("AMAZON.StopIntent")(input))
+    is_intent_name("AMAZON.CancelIntent")(input) or
+    is_intent_name("AMAZON.StopIntent")(input))
 def cancel_and_stop_intent_handler(handler_input):
     """Single handler for Cancel and Stop Intent."""
     # type: (HandlerInput) -> Response

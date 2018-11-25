@@ -16,7 +16,7 @@ LESSONS = {
         },
         {
           "title": "Intervals - Quality",
-          "card_image": "Perfect Intervals: unison, fourth, fifth, and octave; can be diminished (one chromatic tone smaller) or augmented (one chromatic tone larger).\nNon-Perfect Intervals: second, third, sixth and seventh; can be major or minor.",
+          "card_image": "",
           "voice": "The quality of an interval can be Perfect, Diminished, Augmented, Major, or Minor. Unison, fourth, fifth, and octave are called perfect intervals. Each of them can be diminished (one chromatic tone smaller) or augmented (one chromatic tone larger). The rest of the intervals within an octave are: second, third, sixth and seventh. Each of them can be major or minor.",
           "prompt": "Would you like to hear some example intervals?"
         },
