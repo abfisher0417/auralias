@@ -118,6 +118,24 @@ LESSONS = {
                 "major 7th",
                 "octave"
               ]
+            },
+            {
+              "keys": [
+                "c_major"
+              ],
+              "asc_desc": [
+                "desc"
+              ],
+              "intervals": [
+                "unison",
+                "major second",
+                "major 3rd",
+                "perfect 4th",
+                "perfect 5th",
+                "major 6th",
+                "major 7th",
+                "octave"
+              ]
             }
           ]
       }
@@ -149,6 +167,21 @@ LESSONS = {
         "prompt": "Name the note I stopped on. For example, F sharp.",
         "levels": [
           {
+            "instructions": "In this exercise, if you are using a screen enabled device, you will see the scale. I will play up the scale and randomly stop on a note. Your goal is to tell me the number of the note I stopped on. For example, 4. I will only play the scale within one octave to keep things simple.",
+            "prompt": "Say the number of the note I stopped on. For example, 4.",
+            "keys": [
+              "d_major"
+            ],
+            "asc_desc": [
+              "asc"
+            ],
+            "number_or_note_name": [
+              "number"
+            ]
+          },
+          {
+            "instructions": "In this exercise, if you are using a screen enabled device, you will see the scale. I will play up the scale and randomly stop on a note. Your goal is to tell me the name of the note I stopped on. For example, F sharp. I will only play the scale within one octave to keep things simple.",
+            "prompt": "Name the note I stopped on. For example, F sharp.",
             "keys": [
               "d_major"
             ],
@@ -160,6 +193,21 @@ LESSONS = {
             ]
           },
           {
+            "instructions": "In this exercise, if you are using a screen enabled device, you will see the scale. I will play down the scale and randomly stop on a note. Your goal is to tell me the number of the note I stopped on. For example, 4. I will only play the scale within one octave to keep things simple.",
+            "prompt": "Say the number of the note I stopped on. For example, 4.",
+            "keys": [
+              "d_major"
+            ],
+            "asc_desc": [
+              "desc"
+            ],
+            "number_or_note_name": [
+              "number"
+            ]
+          },
+          {
+            "instructions": "In this exercise, if you are using a screen enabled device, you will see the scale. I will play down the scale and randomly stop on a note. Your goal is to tell me the name of the note I stopped on. For example, F sharp. I will only play the scale within one octave to keep things simple.",
+            "prompt": "Name the note I stopped on. For example, F sharp.",
             "keys": [
               "d_major"
             ],

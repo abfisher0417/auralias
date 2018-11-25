@@ -8,6 +8,7 @@ midiutil = "*"
 ask-sdk = "*"
 pyyaml = "*"
 jupyter = "*"
+six = "*"
 
 [dev-packages]
 
