@@ -53,7 +53,7 @@ LESSONS = {
       ],
       "assessment": {
         "title": "Intervals Assessment",
-        "instructions": "In this exercise, you will hear two notes in sequence, and if you are using a screen enabled device, you will see the notes. Your goal is to identify the interval between the two notes by name. After I play an interval, say its name by responding unison, major second, major third, perfect fourth, perfect fifth, major sixth, major seventh, or octave.",
+        "instructions": "In this exercise, you will hear two notes in sequence, and if you are using a screen enabled device, you will see the notes. Your goal is to identify the interval between the two notes by name. After I play an interval, say its name by responding unison, major second, major third, perfect fourth, perfect fifth, major sixth, major seventh, or octave. There will be eight questions.",
         "prompt": "Name the interval. For example, octave.",
           "levels": [
             {
@@ -79,7 +79,7 @@ LESSONS = {
               ],
               "intervals": [
                 "unison",
-                "major second",
+                "major 2nd",
                 "major 3rd",
                 "perfect 5th",
                 "octave"
@@ -94,7 +94,7 @@ LESSONS = {
               ],
               "intervals": [
                 "unison",
-                "major second",
+                "major 2nd",
                 "major 3rd",
                 "perfect 4th",
                 "perfect 5th",
@@ -110,7 +110,7 @@ LESSONS = {
               ],
               "intervals": [
                 "unison",
-                "major second",
+                "major 2nd",
                 "major 3rd",
                 "perfect 4th",
                 "perfect 5th",
@@ -128,7 +128,7 @@ LESSONS = {
               ],
               "intervals": [
                 "unison",
-                "major second",
+                "major 2nd",
                 "major 3rd",
                 "perfect 4th",
                 "perfect 5th",
@@ -163,25 +163,10 @@ LESSONS = {
       ],
       "assessment": {
         "title": "Scales Assessment",
-        "instructions": "In this exercise, if you are using a screen enabled device, you will see the scale. I will play up the scale and randomly stop on a note. Your goal is to tell me the name of the note I stopped on. I will only play the scale within one octave to keep things simple.",
+        "instructions": "In this exercise, if you are using a screen enabled device, you will see the scale. I will play up the scale and randomly stop on a note. Your goal is to tell me the name of the note I stopped on. I will only play the scale within one octave to keep things simple. There will be eight questions.",
         "prompt": "Name the note I stopped on. For example, F sharp.",
         "levels": [
           {
-            "instructions": "In this exercise, if you are using a screen enabled device, you will see the scale. I will play up the scale and randomly stop on a note. Your goal is to tell me the number of the note I stopped on. For example, 4. I will only play the scale within one octave to keep things simple.",
-            "prompt": "Say the number of the note I stopped on. For example, 4.",
-            "keys": [
-              "d_major"
-            ],
-            "asc_desc": [
-              "asc"
-            ],
-            "number_or_note_name": [
-              "number"
-            ]
-          },
-          {
-            "instructions": "In this exercise, if you are using a screen enabled device, you will see the scale. I will play up the scale and randomly stop on a note. Your goal is to tell me the name of the note I stopped on. For example, F sharp. I will only play the scale within one octave to keep things simple.",
-            "prompt": "Name the note I stopped on. For example, F sharp.",
             "keys": [
               "d_major"
             ],
@@ -193,21 +178,6 @@ LESSONS = {
             ]
           },
           {
-            "instructions": "In this exercise, if you are using a screen enabled device, you will see the scale. I will play down the scale and randomly stop on a note. Your goal is to tell me the number of the note I stopped on. For example, 4. I will only play the scale within one octave to keep things simple.",
-            "prompt": "Say the number of the note I stopped on. For example, 4.",
-            "keys": [
-              "d_major"
-            ],
-            "asc_desc": [
-              "desc"
-            ],
-            "number_or_note_name": [
-              "number"
-            ]
-          },
-          {
-            "instructions": "In this exercise, if you are using a screen enabled device, you will see the scale. I will play down the scale and randomly stop on a note. Your goal is to tell me the name of the note I stopped on. For example, F sharp. I will only play the scale within one octave to keep things simple.",
-            "prompt": "Name the note I stopped on. For example, F sharp.",
             "keys": [
               "d_major"
             ],
@@ -244,7 +214,7 @@ LESSONS = {
       ],
       "assessment": {
         "title": "Chords Assessment",
-        "instructions": "In this exercise, a random major triad will be played, and if you are using a screen enabled device, you will see the triad. Your goal is to identify the triad by name. For example, C major.",
+        "instructions": "In this exercise, a random major triad will be played, and if you are using a screen enabled device, you will see the triad. Your goal is to identify the triad by name. For example, C major. There will be eight questions.",
         "prompt": "Name the triad. For example, C major.",
         "levels": [
           {
