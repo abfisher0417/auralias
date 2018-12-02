@@ -51,37 +51,7 @@
                     ]
                 },
                 {
-                    "name": "IntervalQuizIntent",
-                    "slots": [
-                        {
-                            "name": "interval",
-                            "type": "interval"
-                        }
-                    ],
-                    "samples": [
-                        "how about {interval}",
-                        "{interval}",
-                        "could it be {interval}",
-                        "is it {interval}"
-                    ]
-                },
-                {
-                    "name": "ChordQuizIntent",
-                    "slots": [
-                        {
-                            "name": "chord",
-                            "type": "chord"
-                        }
-                    ],
-                    "samples": [
-                        "how about {chord}",
-                        "could it be {chord}",
-                        "is it {chord}",
-                        "{chord}"
-                    ]
-                },
-                {
-                    "name": "ScaleQuizIntent",
+                    "name": "QuizIntent",
                     "slots": [
                         {
                             "name": "note",
@@ -90,9 +60,25 @@
                         {
                             "name": "number",
                             "type": "AMAZON.NUMBER"
+                        },
+                        {
+                            "name": "interval",
+                            "type": "interval"
+                        },
+                        {
+                            "name": "chord",
+                            "type": "chord"
                         }
                     ],
                     "samples": [
+                        "how about {chord}",
+                        "how about {interval}",
+                        "is it {chord}",
+                        "is it {interval}",
+                        "could it be {chord}",
+                        "could it be {interval}",
+                        "{chord}",
+                        "{interval}",
                         "could it be {number}",
                         "is it {number}",
                         "how about {number}",
@@ -237,58 +223,37 @@
                     "values": [
                         {
                             "name": {
-                                "value": "b major",
-                                "synonyms": [
-                                    "b"
-                                ]
+                                "value": "b major"
                             }
                         },
                         {
                             "name": {
-                                "value": "a major",
-                                "synonyms": [
-                                    "a"
-                                ]
+                                "value": "a major"
                             }
                         },
                         {
                             "name": {
-                                "value": "g major",
-                                "synonyms": [
-                                    "g"
-                                ]
+                                "value": "g major"
                             }
                         },
                         {
                             "name": {
-                                "value": "f major",
-                                "synonyms": [
-                                    "f"
-                                ]
+                                "value": "f major"
                             }
                         },
                         {
                             "name": {
-                                "value": "e major",
-                                "synonyms": [
-                                    "e"
-                                ]
+                                "value": "e major"
                             }
                         },
                         {
                             "name": {
-                                "value": "d major",
-                                "synonyms": [
-                                    "d"
-                                ]
+                                "value": "d major"
                             }
                         },
                         {
                             "name": {
-                                "value": "c major",
-                                "synonyms": [
-                                    "c"
-                                ]
+                                "value": "c major"
                             }
                         }
                     ]
