@@ -402,14 +402,18 @@ def help_intent_handler(handler_input):
     """Handler for Help Intent."""
     # type: (HandlerInput) -> Response
     speech_text = ("During the introductory section for each module, I will tell you a bit about intervals, scales, or chords. Say yes to move on or no to stop.")
+    reprompt = "Trying saying yes or no."
     if currently_assessing(handler_input) == 'intervals':
-        speech_text = ("Name the interval. For example, say unison, perfect fifth, or octave.")
+        speech_text = ("Name the interval.")
+        reprompt = "Try saying an interval name, like major third."
     elif currently_assessing(handler_input) == 'scales':
         speech_text = ("Identify the note I stopped on.")
+        reprompt = "Try saying the name of a note. For example, C."
     elif currently_assessing(handler_input) == 'chords':
-        speech_text = ("Identify the chord I played by name. For example, c major")
+        speech_text = ("Identify the chord I played by name.")
+        reprompt = "Try saying a chord name, like C major."
 
-    handler_input.response_builder.speak(speech_text)
+    handler_input.response_builder.speak(speech_text).ask(reprompt)
     return handler_input.response_builder.response
 
 
