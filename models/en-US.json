@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "aural skills",
+            "invocationName": "aural training",
             "intents": [
                 {
                     "name": "AMAZON.FallbackIntent",
